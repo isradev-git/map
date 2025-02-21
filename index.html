@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mapa Interactivo en 3D</title>
+  <!-- Enlazar el CSS compilado -->
+  <link href="./src/style.css" rel="stylesheet">
+</head>
+<body class="bg-gray-100 h-screen flex items-center justify-center relative">
+  <!-- Contenedor del mapa -->
+  <div id="map" class="w-full h-[100%] rounded-lg shadow-lg"></div>
+
+  <!-- Panel lateral -->
+  <div class="absolute top-0 left-0 w-64 h-screen bg-gray-800 text-white p-4 space-y-4">
+    <h2 class="text-xl font-bold">Opciones</h2>
+    <button id="toggle-3d" class="bg-blue-500 px-4 py-2 rounded-md w-full">Alternar 3D</button>
+    <select id="style-selector" class="bg-gray-700 px-4 py-2 rounded-md w-full">
+      <option value="mapbox://styles/mapbox/streets-v12">Streets</option>
+      <option value="mapbox://styles/mapbox/satellite-streets-v12">Satellite Streets</option>
+      <option value="mapbox://styles/mapbox/outdoors-v12">Outdoors</option>
+      <option value="mapbox://styles/mapbox/dark-v11">Dark</option>
+    </select>
+    <input id="search" type="text" placeholder="Buscar dirección..." class="bg-gray-700 px-4 py-2 rounded-md w-full">
+    <div class="space-y-2">
+      <input id="origin" type="text" placeholder="Origen" class="bg-gray-700 px-4 py-2 rounded-md w-full">
+      <input id="destination" type="text" placeholder="Destino" class="bg-gray-700 px-4 py-2 rounded-md w-full">
+      <button id="get-route" class="bg-blue-500 px-4 py-2 rounded-md w-full">Obtener Ruta</button>
+    </div>
+    <button id="fly-to-location" class="bg-green-500 px-4 py-2 rounded-md w-full">Volar a Times Square</button>
+  </div>
+
+  <!-- Importar Mapbox GL JS -->
+  <script src='https://api.mapbox.com/mapbox-gl-js/v2.15.0/mapbox-gl.js'></script>
+  <link href='https://api.mapbox.com/mapbox-gl-js/v2.15.0/mapbox-gl.css' rel='stylesheet' />
+
+  <!-- Enlazar tu script personalizado -->
+  <script type="module" src="/src/main.js"></script>
+</body>
+</html>
