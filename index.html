@@ -6,13 +6,19 @@
   <title>Mapa Interactivo en 3D</title>
   <!-- Enlazar el CSS compilado -->
   <link href="./src/style.css" rel="stylesheet">
+  <link href='https://api.mapbox.com/mapbox-gl-js/v2.15.0/mapbox-gl.css' rel='stylesheet' />
 </head>
-<body class="bg-gray-100 h-screen flex items-center justify-center relative">
+<body class="bg-gray-100 h-screen flex items-center justify-center relative overflow-hidden">
   <!-- Contenedor del mapa -->
-  <div id="map" class="w-full h-[100%] rounded-lg shadow-lg"></div>
+  <div id="map" class="w-full h-full rounded-lg shadow-lg"></div>
+
+  <!-- Botón para mostrar/ocultar el panel en móviles -->
+  <button id="toggle-panel" class="md:hidden fixed top-4 left-4 z-20 bg-gray-800 text-white p-2 rounded-md shadow-lg">
+    ☰
+  </button>
 
   <!-- Panel lateral -->
-  <div class="absolute top-0 left-0 w-64 h-screen bg-gray-800 text-white p-4 space-y-4">
+  <div id="sidebar" class="fixed top-0 left-0 w-64 h-full bg-gray-800 text-white p-4 space-y-4 transform -translate-x-full md:translate-x-0 transition-transform duration-300 z-10">
     <h2 class="text-xl font-bold">Opciones</h2>
     <button id="toggle-3d" class="bg-blue-500 px-4 py-2 rounded-md w-full">Alternar 3D</button>
     <select id="style-selector" class="bg-gray-700 px-4 py-2 rounded-md w-full">
@@ -28,13 +34,20 @@
       <button id="get-route" class="bg-blue-500 px-4 py-2 rounded-md w-full">Obtener Ruta</button>
     </div>
     <button id="fly-to-location" class="bg-green-500 px-4 py-2 rounded-md w-full">Volar a Times Square</button>
+    <button id="explore-mode" class="bg-purple-500 px-4 py-2 rounded-md w-full">Modo Explorar</button>
   </div>
 
   <!-- Importar Mapbox GL JS -->
   <script src='https://api.mapbox.com/mapbox-gl-js/v2.15.0/mapbox-gl.js'></script>
-  <link href='https://api.mapbox.com/mapbox-gl-js/v2.15.0/mapbox-gl.css' rel='stylesheet' />
 
   <!-- Enlazar tu script personalizado -->
   <script type="module" src="/src/main.js"></script>
+  <script>
+    // Script para alternar el panel en móviles
+    document.getElementById('toggle-panel').addEventListener('click', () => {
+      const sidebar = document.getElementById('sidebar');
+      sidebar.classList.toggle('-translate-x-full');
+    });
+  </script>
 </body>
 </html>
